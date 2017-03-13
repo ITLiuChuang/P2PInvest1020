@@ -105,11 +105,12 @@ public class MyProgress extends View {
         RectF rectF = new RectF(roundWidth / 2, roundWidth / 2,
                 measuredWidth - roundWidth / 2, measuredHeight - roundWidth / 2);
         paint.setColor(sweepColor);
-        canvas.drawArc(rectF, 0, sweepArc, false, paint);
+        //第二个参数是起始角 第三个参数多少度
+        canvas.drawArc(rectF, 0, sweepArc * 360 / 100, false, paint);
 
         //3.画文字
 
-        String text = sweepArc * 100 / 360 + "%";
+        String text = sweepArc + "%";
         Rect rect = new Rect();
         paint.setColor(Color.BLUE);
         paint.setStrokeWidth(0);

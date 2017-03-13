@@ -1,14 +1,9 @@
 package com.p2pinvest1020.fragment;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.os.SystemClock;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,7 +27,7 @@ import butterknife.ButterKnife;
 /**
  * Created by Administrator on 2017/3/10.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends BaseFragment {
 
     @Bind(R.id.base_title)
     TextView baseTitle;
@@ -49,31 +44,20 @@ public class HomeFragment extends Fragment {
     @Bind(R.id.home_progress)
     MyProgress homeProgress;
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = View.inflate(getActivity(), R.layout.fragment_home, null);
-        ButterKnife.bind(this, view);
-        return view;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        initData();
-        initListener();
-    }
-
-    private void initListener() {
+    public void initListener() {
         baseTitle.setText("首页");
         baseSetting.setVisibility(View.INVISIBLE);
         baseBack.setVisibility(View.INVISIBLE);
 
     }
 
-    private void initData() {
+    @Override
+    public int getLayoutid() {
+        return R.layout.fragment_home;
+    }
+
+    public void initData() {
 
         /*
         * 二次封装
@@ -106,7 +90,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void run() {
                 int integer = Integer.parseInt(proInfo.getProgress());
-                for (int i = 0; i < integer; i++) {
+                for (int i = 0; i <= integer; i++) {
                     SystemClock.sleep(20);
                     homeProgress.setProgress(i);
                 }

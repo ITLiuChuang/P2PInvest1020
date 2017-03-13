@@ -14,7 +14,9 @@ public class MyScrollView extends ScrollView {
     }
 
     public MyScrollView(Context context, AttributeSet attrs) {
+
         super(context, attrs);
     }
+
 
 }

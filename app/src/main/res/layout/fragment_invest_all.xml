@@ -4,8 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <ListView
+        android:id="@+id/invest_all_lv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="全部理财" />
+        android:layout_height="match_parent" />
 </LinearLayout>

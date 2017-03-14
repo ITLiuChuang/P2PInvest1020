@@ -1,11 +1,8 @@
 package com.p2pinvest1020.fragment;
 
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,7 +12,6 @@ import com.p2pinvest1020.adapter.InvesAdapter;
 import java.util.ArrayList;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -127,19 +123,6 @@ public class InvestFragment extends BaseFragment {
         return R.layout.fragment_invest;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
 
     @OnClick({R.id.tv_invest_all, R.id.tv_invest_recommend, R.id.tv_invest_hot})
     public void onClick(View view) {

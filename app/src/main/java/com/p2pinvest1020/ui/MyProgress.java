@@ -22,7 +22,7 @@ public class MyProgress extends View {
     private Paint paint;
     private int measuredHeight;
     private int measuredWidth;
-    private int roundWidth = 10;
+    private int roundWidth;
     int sweepArc = 60;
     private int roundColor;
     private int sweepColor = Color.RED;
@@ -61,6 +61,9 @@ public class MyProgress extends View {
         sweepArc = array.getInteger(R.styleable.progress_sweepArc, 0);
         roundColor = array.getColor(R.styleable.progress_roundColor, Color.GRAY);
         sweepColor = array.getColor(R.styleable.progress_sweepColor, Color.RED);
+        roundWidth = array.getInteger(R.styleable.progress_roundWidth, 0);
+
+
         array.recycle();
     }
 
@@ -140,4 +143,13 @@ public class MyProgress extends View {
          * */
         postInvalidate();
     }
+    public void setroundWidth(int progress) {
+        roundWidth = progress;
+        /**
+         * invalidate 是在主线程强制刷新
+         * postinvalidate 是在分线程强制刷新
+         * */
+        postInvalidate();
+    }
+
 }

@@ -6,6 +6,36 @@
 
     <include layout="@layout/base_head"></include>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_invest_all"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="全部理财" />
+
+        <TextView
+            android:id="@+id/tv_invest_recommend"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="推荐理财" />
+
+        <TextView
+            android:id="@+id/tv_invest_hot"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="热门理财" />
+    </LinearLayout>
+
     <android.support.v4.view.ViewPager
         android:id="@+id/invest_vp"
         android:layout_width="match_parent"

@@ -11,7 +11,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.p2pinvest1020.R;
-import com.p2pinvest1020.utils.DensityUtil;
+import com.p2pinvest1020.utils.UiUtils;
 
 /**
  * Created by 刘闯 on 2017/3/13.
@@ -114,7 +114,7 @@ public class MyProgress extends View {
         Rect rect = new Rect();
         paint.setColor(Color.BLUE);
         paint.setStrokeWidth(0);
-        paint.setTextSize(DensityUtil.dip2px(getContext(), 20));
+        paint.setTextSize(UiUtils.dp2px(20));
         //第一个参数是文本 第二个到第三个参数是文字的截取的长度，第四个参数是存放测量结果的容器
         paint.getTextBounds(text, 0, text.length(), rect);
 

@@ -2,7 +2,6 @@ package com.p2pinvest1020.fragment;
 
 import android.content.Context;
 import android.os.SystemClock;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,8 +11,6 @@ import com.p2pinvest1020.R;
 import com.p2pinvest1020.bean.HomeBean;
 import com.p2pinvest1020.command.AppNetConfig;
 import com.p2pinvest1020.ui.MyProgress;
-import com.p2pinvest1020.utils.LoadNet;
-import com.p2pinvest1020.utils.LoadNetHttp;
 import com.p2pinvest1020.utils.ThreadPool;
 import com.squareup.picasso.Picasso;
 import com.youth.banner.Banner;
@@ -45,6 +42,22 @@ public class HomeFragment extends BaseFragment {
     MyProgress homeProgress;
 
 
+    @Override
+    protected String getChildUrl() {
+        return AppNetConfig.INDEX;
+    }
+
+    @Override
+    protected void initData(String json) {
+        HomeBean homeBean = JSON.parseObject(json, HomeBean.class);
+        tvHomeYearrate.setText(homeBean.getProInfo().getYearRate() + "%");
+        tvHomeProduct.setText(homeBean.getProInfo().getName());
+        //展示UI
+        initProgress(homeBean.getProInfo());
+        initBanner(homeBean);
+
+    }
+
     public void initListener() {
         baseTitle.setText("首页");
         baseSetting.setVisibility(View.INVISIBLE);
@@ -57,33 +70,6 @@ public class HomeFragment extends BaseFragment {
         return R.layout.fragment_home;
     }
 
-    public void initData() {
-
-        /*
-        * 二次封装
-        * 为什么要二次封装
-        *
-        * 第一  调用的方便
-        * 第二  修改和维护方便
-        * */
-        LoadNet.getDataPost(AppNetConfig.INDEX, new LoadNetHttp() {
-            @Override
-            public void success(String context) {
-//                Log.i("http", "success: " + context);
-                HomeBean homeBean = JSON.parseObject(context, HomeBean.class);
-                tvHomeYearrate.setText(homeBean.getProInfo().getYearRate() + "%");
-                tvHomeProduct.setText(homeBean.getProInfo().getName());
-                //展示UI
-                initProgress(homeBean.getProInfo());
-                initBanner(homeBean);
-            }
-
-            @Override
-            public void failure(String error) {
-                Log.i("http", "failure: " + error);
-            }
-        });
-    }
 
     private void initProgress(final HomeBean.ProInfoBean proInfo) {
         ThreadPool.getInstance().getGlobalThread().execute(new Runnable() {
@@ -92,6 +78,9 @@ public class HomeFragment extends BaseFragment {
                 int integer = Integer.parseInt(proInfo.getProgress());
                 for (int i = 0; i <= integer; i++) {
                     SystemClock.sleep(20);
+                    if (homeProgress == null) {
+                        return;
+                    }
                     homeProgress.setProgress(i);
                 }
             }

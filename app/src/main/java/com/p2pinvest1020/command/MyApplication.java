@@ -14,7 +14,7 @@ public class MyApplication extends Application {
 
     private static Context context;
     private static Thread mainThread;
-    private static int  threadid;
+    private static int threadid;
     private static Handler handler;
 
     @Override
@@ -22,6 +22,8 @@ public class MyApplication extends Application {
         super.onCreate();
         context = this;
 
+        threadid = android.os.Process.myPid();
+        handler = new Handler();
         //初始化未捕获异常 上线的时候才打开
         //CrashHandler.getInstance().init();
     }

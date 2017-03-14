@@ -4,8 +4,8 @@ import android.widget.ListView;
 
 import com.alibaba.fastjson.JSON;
 import com.p2pinvest1020.R;
-import com.p2pinvest1020.adapter.InvestAllAdapter;
-import com.p2pinvest1020.bean.InvestAllBean;
+import com.p2pinvest1020.adapter.InvestAllAdapter3;
+import com.p2pinvest1020.base.InvestAllBean;
 import com.p2pinvest1020.command.AppNetConfig;
 
 import butterknife.Bind;
@@ -25,8 +25,9 @@ public class InvestAllFragment extends BaseFragment {
     @Override
     protected void initData(String json) {
         InvestAllBean investAllBean = JSON.parseObject(json, InvestAllBean.class);
-        InvestAllAdapter investAllAdapter = new InvestAllAdapter(investAllBean.getData());
-        investAllLv.setAdapter(investAllAdapter);
+//        InvestAllAdapter adapter = new InvestAllAdapter(investAllBean.getData());
+        InvestAllAdapter3 adapter = new InvestAllAdapter3(investAllBean.getData());
+        investAllLv.setAdapter(adapter);
     }
 
     @Override

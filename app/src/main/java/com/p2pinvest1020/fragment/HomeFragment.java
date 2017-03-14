@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.p2pinvest1020.R;
-import com.p2pinvest1020.bean.HomeBean;
+import com.p2pinvest1020.base.HomeBean;
 import com.p2pinvest1020.command.AppNetConfig;
 import com.p2pinvest1020.ui.MyProgress;
 import com.p2pinvest1020.utils.ThreadPool;

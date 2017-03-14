@@ -6,7 +6,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.p2pinvest1020.R;
-import com.p2pinvest1020.bean.InvestAllBean;
+import com.p2pinvest1020.base.InvestAllBean;
 import com.p2pinvest1020.ui.MyProgress;
 import com.p2pinvest1020.utils.UiUtils;
 
@@ -89,6 +89,32 @@ public class InvestAllAdapter extends BaseAdapter {
 
         ViewHolder(View view) {
             ButterKnife.bind(this, view);
+        }
+    }
+
+    /**
+     * Created by 刘闯 on 2017/3/14.
+     */
+
+    public static class BaseInvestAllAdapter03 extends BaseAdapter {
+        @Override
+        public int getCount() {
+            return 0;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            return null;
         }
     }
 }

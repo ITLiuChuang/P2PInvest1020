@@ -1,4 +1,4 @@
-package com.p2pinvest1020.bean;
+package com.p2pinvest1020.base;
 
 import java.util.List;
 

@@ -112,6 +112,12 @@ public abstract class LoadingPager extends FrameLayout {
         AsyncHttpClient httpClient = new AsyncHttpClient();
         String url = getUrl();
 
+        if (TextUtils.isEmpty(url)) {
+            //如果是空默认不加载网络
+            resultState = ResultState.SUCCESS;//改变状态
+            loadImage();
+            return;
+        }
         httpClient.post(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(String content) {
@@ -132,11 +138,11 @@ public abstract class LoadingPager extends FrameLayout {
                 resultState = ResultState.ERROR;
                 resultState.setJson(content);
                 loadImage();
-
             }
+
         });
     }
-
+    protected abstract void onSuccess(ResultState resultState, View sucessView);
     /**
      * 根据枚举不同的值 来设置不同的状态
      */
@@ -164,7 +170,7 @@ public abstract class LoadingPager extends FrameLayout {
 
     }
 
-    protected abstract void onSuccess(ResultState resultState, View sucessView);
+
 
     public enum ResultState {
         //相当于三个ResultState对象

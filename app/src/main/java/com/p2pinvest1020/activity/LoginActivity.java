@@ -53,48 +53,61 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
-                String phone = loginEtNumber.getText().toString().trim();
-                String pwd = loginEtPwd.getText().toString().trim();
+                login();
+            }
+        });
+        loginRegitsterTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegesterActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 
-                if (TextUtils.isEmpty(phone)) {
-                    showToast("账号不能为空");
-                    return;
-                } else if (TextUtils.isEmpty(pwd)) {
-                    showToast("密码不能为空");
-                    return;
+
+    private void login() {
+        String phone = loginEtNumber.getText().toString().trim();
+        String pwd = loginEtPwd.getText().toString().trim();
+
+        if (TextUtils.isEmpty(phone)) {
+            showToast("账号不能为空");
+            return;
+        } else if (TextUtils.isEmpty(pwd)) {
+            showToast("密码不能为空");
+            return;
+        }
+        Map<String, String> map = new HashMap<String, String>();
+
+        map.put("phone", phone);
+        map.put("password", pwd);
+
+        //去服务器登陆
+        LoadNet.getDataPost(AppNetConfig.LOGIN, map, new LoadNetHttp() {
+            @Override
+            public void success(String context) {
+                JSONObject jsonObject = JSON.parseObject(context);
+                Boolean success = jsonObject.getBoolean("success");
+
+                Log.e("login", "success: " + context);
+                if (success) {
+                    //解析数据
+                    UserInfo userInfo = JSON.parseObject(context, UserInfo.class);
+                    //把数据保存到数据库
+                    saveUser(userInfo);
+                    //跳转
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+
+                } else {
+                    showToast("账号或密码错误");
                 }
-                Map<String, String> map = new HashMap<String, String>();
+            }
 
-                map.put("phone", phone);
-                map.put("pwd", pwd);
-
-                //去服务器登陆
-                LoadNet.getDataPost(AppNetConfig.LOGIN, map, new LoadNetHttp() {
-                    @Override
-                    public void success(String context) {
-//                        Log.e("login", "success: " + context);
-                        JSONObject jsonObject = JSON.parseObject(context);
-                        Boolean success = jsonObject.getBoolean("success");
-                        if(success) {
-                            //解析数据
-                            UserInfo userInfo = JSON.parseObject(context, UserInfo.class);
-                            //把数据保存到数据库
-                            saveUser(userInfo);
-                            //跳转
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(intent);
-                            finish();
-
-                        }else{
-                            showToast("账号或密码错误");
-                        }
-                    }
-
-                    @Override
-                    public void failure(String error) {
-                        Log.e("error", "success: " + error);
-                    }
-                });
+            @Override
+            public void failure(String error) {
+                Log.e("error", "success: " + error);
             }
         });
     }

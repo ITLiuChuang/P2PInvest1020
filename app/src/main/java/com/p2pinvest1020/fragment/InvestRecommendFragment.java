@@ -3,6 +3,7 @@ package com.p2pinvest1020.fragment;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.p2pinvest1020.R;
 import com.p2pinvest1020.ui.randomLayout.StellarMap;
@@ -67,6 +68,9 @@ public class InvestRecommendFragment extends BaseFragment {
 
 
     class RecommendAdapter implements StellarMap.Adapter {
+
+        private TextView textView;
+
         /**
          * 有多少个组
          *
@@ -104,7 +108,7 @@ public class InvestRecommendFragment extends BaseFragment {
         @Override
         public View getView(int group, int position, View convertView) {
 
-            TextView textView = new TextView(getActivity());
+            textView = new TextView(getActivity());
             if (group == 0) {
                 textView.setText(oneDatas[position]);
             } else {
@@ -116,6 +120,13 @@ public class InvestRecommendFragment extends BaseFragment {
             int green = random.nextInt(211);
             int blue = random.nextInt(211);
             textView.setTextColor(Color.rgb(red, green, blue));
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getActivity(), textView.getText().toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
             return textView;
         }
 

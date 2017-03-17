@@ -11,7 +11,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.p2pinvest1020.R;
+import com.p2pinvest1020.activity.ColumnActivity;
+import com.p2pinvest1020.activity.LineChartActivity;
 import com.p2pinvest1020.activity.MainActivity;
+import com.p2pinvest1020.activity.PieActivity;
 import com.p2pinvest1020.activity.ReChargeActivity;
 import com.p2pinvest1020.activity.SettingActivity;
 import com.p2pinvest1020.activity.WithDrawActivity;
@@ -115,7 +118,7 @@ public class PropertyFragment extends BaseFragment {
     }
 
 
-    @OnClick({R.id.base_setting, R.id.recharge,R.id.withdraw})
+    @OnClick({R.id.base_setting, R.id.recharge,R.id.withdraw,R.id.ll_touzi,R.id.ll_touzi_zhiguan,R.id.ll_zichan})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.base_setting:
@@ -130,6 +133,15 @@ public class PropertyFragment extends BaseFragment {
             case R.id.withdraw:
                 intent = new Intent(getActivity(), WithDrawActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.ll_zichan:
+                startActivity(new Intent(getActivity(),PieActivity.class));
+                break;
+            case R.id.ll_touzi_zhiguan:
+                startActivity(new Intent(getActivity(),ColumnActivity.class));
+                break;
+            case R.id.ll_touzi:
+                startActivity(new Intent(getActivity(),LineChartActivity.class));
                 break;
         }
     }

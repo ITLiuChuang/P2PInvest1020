@@ -56,13 +56,16 @@
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
-            android:screenOrientation="behind"></activity>
+            android:screenOrientation="behind" />
         <activity
             android:name="com.alipay.sdk.auth.AuthActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
-            android:screenOrientation="behind"></activity>
-        <activity android:name=".activity.WithDrawActivity"></activity>
+            android:screenOrientation="behind" />
+        <activity android:name=".activity.WithDrawActivity" />
+        <activity android:name=".activity.PieActivity" />
+        <activity android:name=".activity.LineChartActivity" />
+        <activity android:name=".activity.ColumnActivity"></activity>
     </application>
 
 </manifest>

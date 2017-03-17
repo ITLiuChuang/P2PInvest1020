@@ -14,6 +14,7 @@ import com.p2pinvest1020.R;
 import com.p2pinvest1020.activity.MainActivity;
 import com.p2pinvest1020.activity.ReChargeActivity;
 import com.p2pinvest1020.activity.SettingActivity;
+import com.p2pinvest1020.activity.WithDrawActivity;
 import com.p2pinvest1020.base.UserInfo;
 import com.p2pinvest1020.command.AppNetConfig;
 import com.p2pinvest1020.utils.BitmapUtils;
@@ -114,7 +115,7 @@ public class PropertyFragment extends BaseFragment {
     }
 
 
-    @OnClick({R.id.base_setting, R.id.recharge})
+    @OnClick({R.id.base_setting, R.id.recharge,R.id.withdraw})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.base_setting:
@@ -124,6 +125,10 @@ public class PropertyFragment extends BaseFragment {
                 break;
             case R.id.recharge:
                 intent = new Intent(getActivity(), ReChargeActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.withdraw:
+                intent = new Intent(getActivity(), WithDrawActivity.class);
                 startActivity(intent);
                 break;
         }

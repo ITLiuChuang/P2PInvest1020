@@ -61,6 +61,7 @@ public class ReChargeActivity extends BaseActivity {
     TextView yueTv;
     @Bind(R.id.btn_chongzhi)
     Button btnChongzhi;
+
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -177,6 +178,9 @@ public class ReChargeActivity extends BaseActivity {
                 finish();
             }
         });
+
+
+
     }
 
     @Override

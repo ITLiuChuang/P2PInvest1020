@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <include layout="@layout/base_head"></include>
+    <!--<RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@android:color/holo_blue_light">
@@ -19,7 +20,7 @@
             android:text="设置"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
-    </RelativeLayout>
+    </RelativeLayout>-->
 
     <ScrollView
         android:layout_width="match_parent"

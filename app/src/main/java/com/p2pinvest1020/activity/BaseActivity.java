@@ -70,4 +70,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         userInfo.setData(dataBean);
         return userInfo;
     }
+    public void saveImage(Boolean isUpdate){
+        SharedPreferences sp = getSharedPreferences("image", MODE_PRIVATE);
+        sp.edit().putBoolean("update", isUpdate).commit();
+    }
+
+    public boolean isUpdatae() {
+        SharedPreferences sp = getSharedPreferences("image", MODE_PRIVATE);
+        return sp.getBoolean("update", false);
+    }
 }

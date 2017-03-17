@@ -49,6 +49,10 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected void initData(String json) {
+        baseTitle.setText("首页");
+        baseSetting.setVisibility(View.INVISIBLE);
+        baseBack.setVisibility(View.INVISIBLE);
+
         HomeBean homeBean = JSON.parseObject(json, HomeBean.class);
         tvHomeYearrate.setText(homeBean.getProInfo().getYearRate() + "%");
         tvHomeProduct.setText(homeBean.getProInfo().getName());
@@ -59,9 +63,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     public void initListener() {
-        baseTitle.setText("首页");
-        baseSetting.setVisibility(View.INVISIBLE);
-        baseBack.setVisibility(View.INVISIBLE);
+
 
     }
 

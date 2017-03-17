@@ -1,5 +1,7 @@
 package com.p2pinvest1020.fragment;
 
+import com.p2pinvest1020.R;
+
 /**
  * Created by Administrator on 2017/3/10.
  */
@@ -23,6 +25,6 @@ public class MoreFragment extends BaseFragment {
 
     @Override
     public int getLayoutid() {
-        return 0;
+        return  R.layout.fragment_more;
     }
 }

@@ -156,7 +156,7 @@ public class PropertyFragment extends BaseFragment {
             try {
                 if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
                     //sdcard/Android/data/应用包名/file/...jpg
-                    filesDir = getActivity().getExternalFilesDir(null);
+                    filesDir = getActivity().getExternalFilesDir("");
                 } else {
                     filesDir = getActivity().getFilesDir();
                 }

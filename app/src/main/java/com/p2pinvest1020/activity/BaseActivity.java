@@ -2,11 +2,15 @@ package com.p2pinvest1020.activity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.p2pinvest1020.base.DataBean;
 import com.p2pinvest1020.base.UserInfo;
+import com.p2pinvest1020.utils.AppManager;
+
+import java.io.File;
 
 import butterknife.ButterKnife;
 
@@ -70,7 +74,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         userInfo.setData(dataBean);
         return userInfo;
     }
-    public void saveImage(Boolean isUpdate){
+
+    public void saveImage(Boolean isUpdate) {
         SharedPreferences sp = getSharedPreferences("image", MODE_PRIVATE);
         sp.edit().putBoolean("update", isUpdate).commit();
     }
@@ -79,4 +84,34 @@ public abstract class BaseActivity extends AppCompatActivity {
         SharedPreferences sp = getSharedPreferences("image", MODE_PRIVATE);
         return sp.getBoolean("update", false);
     }
+
+    //清除sp
+    public void clearSp() {
+        SharedPreferences user_info = getSharedPreferences("user_info", MODE_PRIVATE);
+        SharedPreferences image = getSharedPreferences("image", MODE_PRIVATE);
+        //清除的内容
+        user_info.edit().clear().commit();
+        image.edit().clear().commit();
+    }
+
+    // 将File删除
+    public void clearFile() {
+        File filesDir;
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            filesDir = getExternalFilesDir("");
+        } else {
+            filesDir = getFilesDir();
+        }
+        File file = new File(filesDir, "icon.png");
+        if (file.exists()) {
+            //删除目录中的内容
+            file.delete();
+        }
+    }
+
+    //销毁所有的Activity
+    public void removeAllActivity() {
+        AppManager.getInstance().removeAll();
+    }
+
 }

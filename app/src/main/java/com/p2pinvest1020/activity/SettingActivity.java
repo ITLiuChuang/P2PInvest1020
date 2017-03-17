@@ -75,7 +75,7 @@ public class SettingActivity extends BaseActivity {
         return R.layout.activity_setting;
     }
 
-    @OnClick({R.id.iv_user_icon, R.id.base_back})
+    @OnClick({R.id.iv_user_icon, R.id.base_back, R.id.btn_user_logout})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_user_icon:
@@ -99,9 +99,24 @@ public class SettingActivity extends BaseActivity {
             case R.id.base_back:
                 finish();
                 break;
+            case R.id.btn_user_logout:
+                /**
+                 将SP清除
+                 将File删除
+                 销毁所有的Activity
+                 重新进入主界面
+                 */
+                clearFile();
+                clearSp();
+                removeAllActivity();
+                startActivity(new Intent(SettingActivity.this, LoginActivity.class));
+                finish();
+                break;
         }
 
     }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -248,7 +263,7 @@ public class SettingActivity extends BaseActivity {
             //判断sd卡是否处于挂载状态
             if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
                 //sdcard/Android/data/应用包名/file/...jpg
-                filesDir = getExternalFilesDir(null);
+                filesDir = getExternalFilesDir("");
             } else {
                 filesDir = getFilesDir();
             }

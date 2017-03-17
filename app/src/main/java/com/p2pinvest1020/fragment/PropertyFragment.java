@@ -1,20 +1,18 @@
 package com.p2pinvest1020.fragment;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Environment;
-import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.p2pinvest1020.R;
 import com.p2pinvest1020.activity.MainActivity;
+import com.p2pinvest1020.activity.ReChargeActivity;
 import com.p2pinvest1020.activity.SettingActivity;
 import com.p2pinvest1020.base.UserInfo;
 import com.p2pinvest1020.command.AppNetConfig;
@@ -116,7 +114,7 @@ public class PropertyFragment extends BaseFragment {
     }
 
 
-    @OnClick({R.id.base_setting, R.id.iv_me_icon})
+    @OnClick({R.id.base_setting, R.id.recharge})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.base_setting:
@@ -124,22 +122,9 @@ public class PropertyFragment extends BaseFragment {
                 startActivity(intent);
 
                 break;
-            case R.id.iv_me_icon:
-                new AlertDialog.Builder(getActivity()).setTitle("选择来源").setItems(new String[]{"拍照", "图库"}, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                switch (which) {
-                                    case 0:
-                                        Toast.makeText(getActivity(), "aaaa", Toast.LENGTH_SHORT).show();
-                                        break;
-                                    case 1:
-                                        Toast.makeText(getActivity(), "bbbbb", Toast.LENGTH_SHORT).show();
-
-                                        break;
-                                }
-                            }
-                        }
-                ).show();
+            case R.id.recharge:
+                intent = new Intent(getActivity(), ReChargeActivity.class);
+                startActivity(intent);
                 break;
         }
     }
